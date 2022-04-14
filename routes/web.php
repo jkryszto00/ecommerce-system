@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('', \App\Http\Controllers\Admin\DashboardController::class)->name('dashboard');
+    Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
+});
